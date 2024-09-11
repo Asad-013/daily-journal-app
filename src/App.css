@@ -1,38 +1,247 @@
-.App {
+/* General Layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+h1 {
   text-align: center;
+  color: #0a74da;
+  font-size: 2.5em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Form Styling */
+.journal-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.journal-form label {
+  color: #0a74da;
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.journal-form input,
+.journal-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: all 0.2s ease-in-out;
+}
+
+.journal-form input:focus,
+.journal-form textarea:focus {
+  border-color: #0a74da;
+  outline: none;
+}
+
+.journal-form textarea {
+  min-height: 100px;
+  resize: none; /* Fixed height */
+}
+
+.journal-form button {
+  grid-column: 1 / span 2;
+  padding: 12px 20px;
+  background-color: #0a74da;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.journal-form button:hover {
+  background-color: #084a8b;
+}
+
+/* Journal Entries */
+.journal-entries {
+  margin-top: 20px;
+}
+
+.journal-entry {
+  background-color: #f9fbfd;
+  border: 1px solid #e0e7ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.journal-entry h3 {
+  margin-top: 0;
+  color: #0a74da;
+}
+
+.journal-entry p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.journal-entry .tags {
+  margin-top: 10px;
+}
+
+.journal-entry .tag {
+  display: inline-block;
+  background-color: #0a74da;
   color: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  margin-right: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.journal-entry button {
+  padding: 8px 12px;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: #0a74da;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.journal-entry button:hover {
+  background-color: #084a8b;
+}
+
+.journal-entry button:last-of-type {
+  background-color: #f44336;
+}
+
+.journal-entry button:last-of-type:hover {
+  background-color: #c73225;
+}
+
+/* Highlight Editing Mode */
+.journal-entry.editing h3 {
+  color: #084a8b;
+  font-size: 1.7em;
+  border-bottom: 2px solid #0a74da;
+  margin-bottom: 15px;
+}
+
+/* Editing Textarea and Input */
+.journal-entry.editing textarea,
+.journal-entry.editing input {
+  background-color: #f0f8ff; /* Softer background for editing */
+  border: 2px solid #0a74da;
+  padding: 10px;
+  font-size: 1.1em; /* Larger text for edit mode */
+  border-radius: 6px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.journal-entry.editing textarea:focus,
+.journal-entry.editing input:focus {
+  border-color: #084a8b; /* Highlighted border when active */
+}
+
+.journal-entry.editing .save-button {
+  padding: 10px 20px;
+  background-color: #ff5757; /* Bright color for Save button */
+  color: white;
+  border-radius: 6px;
+  font-size: 1.1em;
+  margin-top: 15px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.journal-entry.editing .save-button:hover {
+  background-color: #e53935; /* Darker on hover */
+}
+
+/* Make the text input and textarea non-resizable */
+.journal-entry textarea, 
+.journal-entry input {
+  resize: none; /* Disable resizing */
+  background-color: #f0f8ff; /* Softer background for edit mode */
+  border: 2px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Highlight the field currently being edited */
+.journal-entry textarea:focus, 
+.journal-entry input:focus {
+  border-color: #0a74da; /* Highlight border */
+  background-color: #eef5ff; /* Slightly different background on focus */
+  outline: none;
+}
+
+
+
+.journal-entry .save-button {
+  display: block;
+  width: 100px;
+  margin: 20px auto;
+}
+
+/* Style for the dynamic editing field name */
+.editing-field-name {
+  color: #0a74da;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+/* Style for the text areas and inputs */
+.edit-field {
+  width: 100%;
+  resize: none; /* Prevent resizing */
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.edit-field:focus {
+  border-color: #0a74da;
+  background-color: #eef5ff;
+  outline: none;
+}
+
+/* Style for the label */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #0a74da;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .journal-form {
+      grid-template-columns: 1fr;
   }
 }
